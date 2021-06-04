@@ -3,7 +3,7 @@
 Summary
 - Using HTML, CSS, JavaScript, plot.ly, and D3 to create an interactive web page containing analysis of belly button biodiversity data. 
 
--Folders and Files Included :
+*Folders and Files Included :
 
   -Instructions Folder
   
