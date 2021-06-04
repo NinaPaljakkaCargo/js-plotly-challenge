@@ -7,10 +7,10 @@ function bargraph(id_input) {
         var data = importedData.samples;
         //get id data
         var ids = data.filter(x => x.id == id_input);
-        var otu_ids = ids[0].otu_ids;
-        var otu_labels = ids[0].otu_labels;
-        var otu_values = ids[0].sample_values;
-        var y_vals = (otu_ids.slice(0,10).map(x => "OTU" + x)).reverse();
+        var otu_ids = ids[0].otu_ids; //array with ids
+        var otu_labels = ids[0].otu_labels; //array with labels by ids
+        var otu_values = ids[0].sample_values; //array with values by ids
+        var y_vals = (otu_ids.slice(0,10).map(x => "otu" + x)).reverse();
         var x_vals = (otu_values.slice(0,10)).reverse();
         var hvrText = (otu_labels.slice(0,10)).reverse();
     
@@ -25,15 +25,13 @@ function bargraph(id_input) {
         var layout = {
             title: "Top 10 OTU's Found",
             xaxis: { title: "Sample Values"},
-            yaxis: { title: "Sample ID"}
+            yaxis: { title: "Sample IDs"}
         };
-        Plotly.newPlot("bar-plot", data, layout);
     });
+    Plotly.newPlot("bar-plot", data, layout);
 };
 
-console.log(y_vals);
-console.log(x_vals);
-console.log(hvrText);
+
 
 //Create a bubble chart that displays each sample.
 //function bubbleChart(id_input) {
