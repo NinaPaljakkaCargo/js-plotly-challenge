@@ -31,11 +31,14 @@ function bargraph(id_input) {
     });
 };
 
+console.log(y_vals);
+console.log(x_vals);
+console.log(hvrText);
 
 //Create a bubble chart that displays each sample.
-function bubbleChart(id_input) {
+//function bubbleChart(id_input) {
 
-};
+//};
 
 
 
