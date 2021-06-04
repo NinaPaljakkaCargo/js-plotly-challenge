@@ -5,7 +5,7 @@ function bargraph(id_input) {
     d3.json("samples.json").then((importedData) => {
         //console.log(importedData);
         var data = importedData.samples;
-        //get id data for dropdown
+        //get id data
         var ids = data.filter(x => x.id == id_input);
         var otu_ids = ids[0].otu_ids;
         var otu_labels = ids[0].otu_labels;
@@ -29,10 +29,13 @@ function bargraph(id_input) {
         };
         Plotly.newPlot("bar-plot", data, layout);
     });
+};
 
-}
 
+//Create a bubble chart that displays each sample.
+function bubbleChart(id_input) {
 
+};
 
 
 
