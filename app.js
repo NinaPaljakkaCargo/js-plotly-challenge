@@ -62,6 +62,13 @@ function bargraph() {
     
 
 //Create a bubble chart that displays each sample.
+d3.json("samples.json").then((importedData) => {
+    //console.log(importedData);
+    var data = importedData.samples;
+    //get id data
+    var ids = data.filter(x => x.id);
+
+
 var trace2 = {
     x: ids[0].otu_ids,
     y: ids[0].sample_values,
@@ -84,13 +91,3 @@ var layout = {
 };
 
 Plotly.newPlot('bubble', bubbleData, layout);
-
-
-
-
-
-
-
-
-
-
