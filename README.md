@@ -6,6 +6,6 @@ Summary
 *Files Included :
  
       -index.html : code for web landing page
-      -app.js : JS code for appending data from original data table to HTML site
+      -app2.js : JS code for appending data from original data table to HTML site 
       -samples.json : data used for easy access in code
     
