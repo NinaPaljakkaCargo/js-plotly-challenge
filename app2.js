@@ -48,31 +48,42 @@ d3.json("samples.json").then((importedData) => {
     };
 
 
-    //**************setting up the bubble chart******************//
+    //**************setting up the bubble chart******************// 
+
     var trace2 = {
-        x: x_vals,
-        y: y_vals,
+        x: otu_ids,
+        y: otu_values,
         text: hvrText,
         mode: 'markers',
         marker: {
-            color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
+            color: "red",
             size: otu_values,
-            sizemode: 'area',
+            sizemode: 'area'
         }
     };
 
     var bubbleData = [trace2];
 
     var layout = {
-        title: "THIS IS THE TITLE",
-        xaxis: { title: "Sample Values"},
-        yaxis: { title: "Sample IDs"},
+        title: "Values for all Sample IDs",
+        xaxis: { title: "Sample IDs"},
+        yaxis: { title: "Sample Values"},
         showlegend: false,
         height: 600,
         width: 1000
     };
 
     Plotly.newPlot('bubble', bubbleData, layout);
+
+    //***********setting up the ID menu*************************//
+
+
+
+
+    
+    //**************setting up the demographic display*****************//
+
+
 
 
 
