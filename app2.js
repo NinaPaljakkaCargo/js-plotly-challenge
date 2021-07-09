@@ -56,7 +56,8 @@ d3.json("samples.json").then((importedData) => {
         text: hvrText,
         mode: 'markers',
         marker: {
-            color: "red",
+            color: otu_ids,
+            colorscale: [[0, 'rgb(200, 255, 200)'], [1, 'rgb(0, 100, 0)']],
             size: otu_values,
             sizemode: 'area'
         }
@@ -76,13 +77,10 @@ d3.json("samples.json").then((importedData) => {
     Plotly.newPlot('bubble', bubbleData, layout);
 
     //***********setting up the ID menu*************************//
+//id = selDataset
 
-
-
-
-    
     //**************setting up the demographic display*****************//
-
+//id = sample-metadata
 
 
 
