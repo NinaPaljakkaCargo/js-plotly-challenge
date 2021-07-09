@@ -43,11 +43,6 @@ d3.json("samples.json").then((importedData) => {
     Plotly.newPlot("bar", chartData, layout);
 
 
-    function optionChanged(otu_ids) {
-        chartData(otu_ids);
-    };
-
-
     //**************setting up the bubble chart******************// 
 
     var trace2 = {
@@ -78,6 +73,12 @@ d3.json("samples.json").then((importedData) => {
 
     //***********setting up the ID menu*************************//
 //id = selDataset
+//function optionChanged() {
+
+//}
+
+
+
 
     //**************setting up the demographic display*****************//
 //id = sample-metadata
