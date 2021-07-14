@@ -76,33 +76,57 @@ d3.json("samples.json").then((importedData) => {
 
     //***********setting up the ID menu*************************//
 
+    var names = importedData.names
+    dropdownMenu = d3.select("#selDataset")
+    dropdownMenu.selectAll('option')
+        .data(names)
+        .enter()
+        .append('option')
+        .text(d => d)
+        .attr('value',(d => d));
 
     // Call updatePlotly() when a change takes place to the DOM
     d3.selectAll("#selDataset").on("change", updatePlotly);
+
+
+    var meta = importedData.metadata;
+
 
     // This function is called when a dropdown menu item is selected
     function updatePlotly() {
         // Use D3 to select the dropdown menu
         var dropdownMenu = d3.select("#selDataset");
         // Assign the value of the dropdown menu option to a variable
-        var otu_ID = dropdownMenu.property("value");
+        var testsub = dropdownMenu.property("value");
+        
+        var sub_data = data.filter(d => d.id === testsub);
 
-        //access the data
-        var OTU_data = data[OTU_ID];
+        var demo = importedData.metadata.filter(d => d.id == testsub);
+
   
         // Initialize x and y arrays
-        var xData = Object.keys(OTU_data.platforms);
-        var yData =Object.values(OTU_data.platforms);
+        var xbub = sub_data[0].otu_ids;
+        var ybub = sub_data[0].sample_values;
+
   
         //Plot
         var trace3 = {
-            x: xData,
-            y: yData,
-            type: "bar"
+            x: xbub,
+            y: ybub,
+            mode: "markers",
+            marker: {
+                color: xbub,
+                colorscale: [[0, 'rgb(200, 255, 200)'], [1, 'rgb(0, 100, 0)']],
+                size: ybub,
+                sizemode: 'area'
+            }
         };
 
-        var chartData2 = [trace3];
+        Plotly.react('bubble', [trace3]);
 
+
+
+        var chartData2 = [trace3];
         return chartData2;
   
     }
@@ -112,7 +136,6 @@ d3.json("samples.json").then((importedData) => {
         Plotly.react("bar", chartData2);
     }
   
-    d3.selectAll("#selDataset").on("change", updatePlotly);
 
 
 
