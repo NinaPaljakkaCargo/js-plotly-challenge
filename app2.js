@@ -72,6 +72,62 @@ d3.json("samples.json").then((importedData) => {
     Plotly.newPlot('bubble', bubbleData, layout);
 
     //***********setting up the ID menu*************************//
+
+
+    // Call updatePlotly() when a change takes place to the DOM
+    d3.selectAll("#selDataset").on("change", updatePlotly);
+
+    // This function is called when a dropdown menu item is selected
+    function updatePlotly() {
+        // Use D3 to select the dropdown menu
+        var dropdownMenu = d3.select("#selDataset");
+        // Assign the value of the dropdown menu option to a variable
+        var otu_ID = dropdownMenu.property("value");
+
+        //access the data
+        var OTU_data = data[OTU_ID];
+  
+        // Initialize x and y arrays
+        var xData = Object.keys(OTU_data.platforms);
+        var yData =Object.values(OTU_data.platforms);
+  
+        //Plot
+        var trace3 = {
+            x: xData,
+            y: yData,
+            type: "bar"
+        };
+
+        var chartData2 = [trace3];
+
+        return chartData2;
+  
+    }
+    
+    function updatePlot() {
+        var chartData2 = plotData();
+        Plotly.react("bar", chartData2);
+    }
+  
+    d3.selectAll("#selDataset").on("change", updatePlotly);
+  
+    var OTU_info = Object.keys(data);
+
+    var OTU_select = d3.select("#selDataset");
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
 //id = selDataset
 //function optionChanged() {
 
