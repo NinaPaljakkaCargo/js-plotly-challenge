@@ -71,6 +71,9 @@ d3.json("samples.json").then((importedData) => {
 
     Plotly.newPlot('bubble', bubbleData, layout);
 
+
+
+
     //***********setting up the ID menu*************************//
 
 
@@ -110,28 +113,6 @@ d3.json("samples.json").then((importedData) => {
     }
   
     d3.selectAll("#selDataset").on("change", updatePlotly);
-  
-    var OTU_info = Object.keys(data);
-
-    var OTU_select = d3.select("#selDataset");
-
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-//id = selDataset
-//function optionChanged() {
-
-//}
 
 
 
@@ -139,7 +120,16 @@ d3.json("samples.json").then((importedData) => {
     //**************setting up the demographic display*****************//
 //id = sample-metadata
 
+    var OTU_info = Object.keys(data);
 
+    var OTU_select = d3.select("#selDataset");
+
+    ids.forEach(function(ids) {
+        OTU_data = data[ids]
+        var option = IDselect.append("option");
+        option.property("value", ids);
+        option.text(OTU_data.name);
+    });
 
 
 });
