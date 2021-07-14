@@ -14,7 +14,7 @@ d3.json("samples.json").then((importedData) => {
     var x_vals = (otu_values.slice(0,10)).reverse();
     var hvrText = (otu_labels.slice(0,10)).reverse();
 
-    //console.log(y_vals);
+    console.log(y_vals);
     //console.log(x_vals);
     //console.log(hvrText);
 
@@ -120,16 +120,6 @@ d3.json("samples.json").then((importedData) => {
     //**************setting up the demographic display*****************//
 //id = sample-metadata
 
-    var OTU_info = Object.keys(data);
-
-    var OTU_select = d3.select("#selDataset");
-
-    ids.forEach(function(ids) {
-        OTU_data = data[ids]
-        var option = IDselect.append("option");
-        option.property("value", ids);
-        option.text(OTU_data.name);
-    });
-
+    
 
 });
