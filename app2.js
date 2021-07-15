@@ -14,7 +14,7 @@ d3.json("samples.json").then((importedData) => {
     var x_vals = (otu_values.slice(0,10)).reverse();
     var hvrText = (otu_labels.slice(0,10)).reverse();
 
-    console.log(y_vals);
+    //console.log(y_vals);
     //console.log(x_vals);
     //console.log(hvrText);
 
@@ -87,9 +87,7 @@ d3.json("samples.json").then((importedData) => {
 
     // Call updatePlotly() when a change takes place to the DOM
     d3.selectAll("#selDataset").on("change", updatePlotly);
-
-
-    var meta = importedData.metadata;
+    d3.selectAll("#sample-metadata").on("change", updatePlotly);
 
 
     // This function is called when a dropdown menu item is selected
@@ -101,9 +99,21 @@ d3.json("samples.json").then((importedData) => {
         
         var sub_data = data.filter(d => d.id === testsub);
 
-        var demo = importedData.metadata.filter(d => d.id == testsub);
 
-  
+        //***********setting up the demographic display*************************//
+        // var demo is the object containing key, value pairs
+
+        var demo = importedData.metadata.filter(d => d.id == testsub);
+        //console.log(demo);
+        var demoPrint = d3.select("#sample-metadata");
+        demoPrint.html(""); //reset demo after change
+    
+        Plotly.react('sample-metadata', demoPrint);
+
+
+
+        //**************setting up the update for the bubble graph***************//
+
         // Initialize x and y arrays
         var xbub = sub_data[0].otu_ids;
         var ybub = sub_data[0].sample_values;
@@ -123,26 +133,16 @@ d3.json("samples.json").then((importedData) => {
         };
 
         Plotly.react('bubble', [trace3]);
-
-
+       
 
         var chartData2 = [trace3];
         return chartData2;
   
     }
     
-    function updatePlot() {
-        var chartData2 = plotData();
-        Plotly.react("bar", chartData2);
-    }
+    
   
 
 
-
-
-    //**************setting up the demographic display*****************//
-//id = sample-metadata
-
-    
 
 });
