@@ -110,6 +110,9 @@ d3.json("samples.json").then((importedData) => {
     
         Plotly.react('sample-metadata', demoPrint);
 
+        document.getElementById("sample-metadata").innerHTML = demo[0] + ": " + demo[1];
+
+
 
 
         //**************setting up the update for the bubble graph***************//
