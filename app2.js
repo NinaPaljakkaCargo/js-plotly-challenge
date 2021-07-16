@@ -103,16 +103,22 @@ d3.json("samples.json").then((importedData) => {
         //***********setting up the demographic display*************************//
         // var demo is the object containing key, value pairs
 
-        var demo = importedData.metadata.filter(d => d.id == testsub);
-        //console.log(demo);
+        var demo = importedData.metadata.filter(d => d.id == testsub)[0];
+        console.log(demo);
         var demoPrint = d3.select("#sample-metadata");
         demoPrint.html(""); //reset demo after change
-    
-        Plotly.react('sample-metadata', demoPrint);
 
-        document.getElementById("sample-metadata").innerHTML = demo[0] + ": " + demo[1];
+        //document.getElementById("sample-metadata").innerHTML = demo[0] + ": " + demo[1];
+
+        var demo_entries = Object.entries(demo)
+        demoPrint.selectAll('p')
+            .data(demo_entries)
+            .enter()
+            .append('p')
+            .text(d => d[0] + ": " + d[1]);
 
 
+        //console.log(Object.entries(demo));
 
 
         //**************setting up the update for the bubble graph***************//
